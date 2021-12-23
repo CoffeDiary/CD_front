@@ -1,5 +1,7 @@
 <template>
-	<div>Header Component</div>
+  <div>
+    <router-link to="/home">Home</router-link>
+  </div>
 </template>
 
 <script>
@@ -8,8 +10,8 @@ export default {};
 
 <style scoped>
 div {
-	position: sticky;
-	height: 50px;
-	border-bottom: 1px solid #ebebeb;
+  position: sticky;
+  height: 50px;
+  border-bottom: 1px solid #ebebeb;
 }
 </style>

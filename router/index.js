@@ -25,6 +25,21 @@ const routes = [
 		path: '/signin',
 		name: 'Signin',
 		component: () => import('@/views/Signin')
+	},
+	{
+		path: '/diary/post',
+		name: 'DiaryPost',
+		component: () => import('@/views/diary/Post')
+	},
+	{
+		path: '/diary/get',
+		name: 'DiaryGet',
+		component: () => import('@/views/diary/Get')
+	},
+	{
+		path: '/user/get',
+		name: 'Userget',
+		component: () => import('@/views/user/Get')
 	}
 ];
 
