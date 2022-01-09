@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <router-link to="/home">Home</router-link>
-  </div>
+  <nav class="nav">
+    <router-link to="/home" class="nav-link">Home</router-link>
+  </nav>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export default {};
 </script>
 
 <style scoped>
-div {
+nav {
   position: sticky;
   height: 50px;
   border-bottom: 1px solid #ebebeb;

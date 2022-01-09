@@ -3,7 +3,7 @@
     <Header />
     <div class="wrap">
       <Menu />
-      <Content />
+      <!-- <Content /> -->
     </div>
     <div>
       <router-view />
@@ -14,14 +14,14 @@
 <script>
 import Header from "@/components/Header";
 import Menu from "@/components/Menu";
-import Content from "@/components/Content";
+// import Content from "@/components/Content";
 
 export default {
   name: "app",
   components: {
     Header,
     Menu,
-    Content,
+    // Content,
   },
 };
 </script>
@@ -33,4 +33,5 @@ h1 {
 .wrap {
   display: flex;
 }
+
 </style>
