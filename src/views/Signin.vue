@@ -1,15 +1,15 @@
 <template>
   <div class="container">
     <form @submit.prevent="submitForm">
-      <div>
-        <label for="username">username</label>
-        <input type="text" id="username" v-model="username" />
+      <div class="mb-3">
+        <label for="username" class="form-label">username</label>
+        <input type="text" id="username" class="form-control" v-model="username" />
       </div>
-      <div>
-        <label for="password">password</label>
-        <input type="password" id="password" v-model="password" />
+      <div class="mb-3">
+        <label for="password" class="form-label">password</label>
+        <input type="password" id="password" class="form-control" v-model="password" />
       </div>
-      <button type="submit">Signin</button>
+      <button type="submit" class="btn btn-primary">Signin</button>
     </form>
   </div>
 </template>
@@ -32,9 +32,7 @@ export default {
         userName: this.username,
       };
       const response = await loginUser(userData);
-
       if (response.status == 200) {
-        console.log(response);
         alert('Welcome to Coffee Diary!');
         this.$cookies.set("access_token", response.data);
         this.$router.push('/home');

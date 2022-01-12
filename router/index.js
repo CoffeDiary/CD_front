@@ -39,12 +39,19 @@ const routes = [
     name: 'Signup',
     component: () => import('@/views/Signup'),
     beforeEnter: notRequireAccessToken,
+    
   },
   {
     path: '/signin',
     name: 'Signin',
     component: () => import('@/views/Signin'),
     beforeEnter: notRequireAccessToken,
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: () => import('@/views/logout'),
+    beforeEnter: requireAccessToken,
   },
   {
     path: '/diary/post',

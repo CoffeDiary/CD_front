@@ -1,27 +1,28 @@
 <template>
   <div class="container">
     <form @submit.prevent="submitForm">
-      <div>
-        <label for="email">email</label>
-        <input type="text" id="email" v-model="email" />
-      </div>
-      <div>
-        <label for="nickname">nickname</label>
-        <input type="text" id="nickname" v-model="nickname" />
-      </div>
-      <div>
-        <label for="password">password</label>
-        <input type="password" id="password" v-model="password" />
-      </div>
-      <div>
-        <label for="passwordConfirm">password confirm</label>
-        <input type="password" id="passwordConfirm" v-model="passwordConfirm" />
-      </div>
-      <div>
+      <div class="mb-3">
         <label for="username">username</label>
-        <input type="text" id="username" v-model="username" />
+        <input type="text" id="username" class="form-control" v-model="username" />
+        <div id="usernamelHelp" class="form-text">This is your ID.</div>
       </div>
-      <button type="submit">Signup</button>
+      <div class="mb-3">
+        <label for="password">password</label>
+        <input type="password" id="password" class="form-control" v-model="password" />
+      </div>
+      <div class="mb-3">
+        <label for="passwordConfirm">password confirm</label>
+        <input type="password" id="passwordConfirm" class="form-control" v-model="passwordConfirm" />
+      </div>
+      <div class="mb-3">
+        <label for="email">email</label>
+        <input type="text" id="email" class="form-control" v-model="email" />
+      </div>
+      <div class="mb-3">
+        <label for="nickname">nickname</label>
+        <input type="text" id="nickname" class="form-control" v-model="nickname" />
+      </div>
+      <button type="submit" class="btn btn-primary">Signup</button>
     </form>
   </div>
 </template>
