@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { loginUser } from "../../api";
+import { loginUser } from "../../../api";
 
 export default {
   name: 'SigninForm',
@@ -35,6 +35,7 @@ export default {
       if (response.status == 200) {
         alert('Welcome to Coffee Diary!');
         this.$cookies.set("access_token", response.data);
+        this.emitter.emit('logged');
         this.$router.push('/home');
       }
       else {
