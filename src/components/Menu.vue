@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     checkIfIsLogged () {
-      if (this.$cookies.isKey("access_token") == true) {
+      if (this.$cookies.isKey("access_token") === true) {
         return true;
       }
       else {

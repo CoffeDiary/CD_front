@@ -5,7 +5,6 @@
 <script>
 
 export default {
-  name: 'SigninForm',
   mounted() {
     this.$cookies.remove("access_token");
     this.emitter.emit('logged');

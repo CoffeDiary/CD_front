@@ -66,6 +66,18 @@ const routes = [
     beforeEnter: requireAccessToken,
   },
   {
+    path: '/diary/put',
+    name: 'DiaryPut',
+    component: () => import('@/views/diary/Put'),
+    beforeEnter: requireAccessToken,
+  },
+  {
+    path: '/diary/delete',
+    name: 'DiaryDelete',
+    component: () => import('@/views/diary/Delete'),
+    beforeEnter: requireAccessToken,
+  },
+  {
     path: '/diary/list/get',
     name: 'DiaryListGet',
     component: () => import('@/views/diary/list/Get'),

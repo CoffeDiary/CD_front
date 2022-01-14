@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h2>Today's Diary</h2>
+    <h2>Diary fix</h2>
   </div>
   <div class="container">
-    <form @submit.prevent="diaryPostForm">
+    <form @submit.prevent="diaryPutForm">
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <input type="text" id="title" class="form-control"  v-model="title" />
@@ -22,27 +22,28 @@
 </template>
 
 <script>
-import { postDiary } from "../../../api";
+import { putDiary } from "../../../api";
 export default {
-  name: "diaryPostForm",
+  name: "diaryPutForm",
   components: {
   },
   data() {
     return {
-      title: '',
-      content: '',
-      secret: '',
+      diaryId: this.$route.params.diaryId,
+      title: this.$route.params.title,
+      content: this.$route.params.content,
+      secret: this.$route.params.secret,
     };
   },
   methods: {
-    async diaryPostForm() {
+    async diaryPutForm() {
       try {
         const diaryData = {
           title: this.title,
           content: this.content,
           secret: this.secret,
         };
-        const response = await postDiary(diaryData);
+        const response = await putDiary(diaryData, this.diaryId);
         if (response.status == 200) {
           alert('success!');
           this.$router.push('/diary/list/get');
