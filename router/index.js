@@ -37,14 +37,14 @@ const routes = [
   {
     path: '/signup',
     name: 'Signup',
-    component: () => import('@/views/join/post'),
+    component: () => import('@/views/join/Post'),
     beforeEnter: notRequireAccessToken,
     
   },
   {
     path: '/signin',
     name: 'Signin',
-    component: () => import('@/views/login/post'),
+    component: () => import('@/views/login/Post'),
     beforeEnter: notRequireAccessToken,
   },
   {
@@ -63,6 +63,12 @@ const routes = [
     path: '/diary/get',
     name: 'DiaryGet',
     component: () => import('@/views/diary/Get'),
+    beforeEnter: requireAccessToken,
+  },
+  {
+    path: '/diary/list/get',
+    name: 'DiaryListGet',
+    component: () => import('@/views/diary/list/Get'),
     beforeEnter: requireAccessToken,
   },
   {

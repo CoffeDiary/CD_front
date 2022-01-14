@@ -1,4 +1,15 @@
 import axios from 'axios';
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
+
+var accessToken = '';
+try {
+  accessToken = cookies.get("access_token");
+  // console.log(accessToken);
+} catch (err) {
+  console.log(err);
+}
+
 const instance = axios.create({
   baseURL: 'http://localhost:8080',
   headers: {
@@ -10,7 +21,7 @@ const instanceIfTokenExist = axios.create({
   baseURL: 'http://localhost:8080',
   headers: {
     'Access-Control-Allow-Origin': '*',
-    'Authorization': '${this.$cookies.get("access_token")}',
+    'Authorization': accessToken,
     'Content-Type': 'application/json; charset = utf-8'
     }
 });
@@ -23,4 +34,8 @@ function loginUser(userData) {
 function postDiary(userData) {
   return instanceIfTokenExist.post('api/diary', userData);
 }
-export { registerUser, loginUser, postDiary };
+function getDiaryList(userData) {
+  return instanceIfTokenExist.get('api/diary/list', userData);
+}
+
+export { registerUser, loginUser, postDiary, getDiaryList };
