@@ -51,7 +51,6 @@ const routes = [
     path: '/logout',
     name: 'logout',
     component: () => import('@/views/logout'),
-    beforeEnter: requireAccessToken,
   },
   {
     path: '/diary/post',

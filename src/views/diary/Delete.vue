@@ -20,7 +20,7 @@ data () {
       console.log(error.response.data);
       this.logMessage = error.response.data;
     }
-    this.$router.push('/diary/list/get');
+    this.$router.push('/diary/mylist/Get');
   },
 };
 </script>

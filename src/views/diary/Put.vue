@@ -46,7 +46,7 @@ export default {
         const response = await putDiary(diaryData, this.diaryId);
         if (response.status == 200) {
           alert('success!');
-          this.$router.push('/diary/list/get');
+          this.$router.push('/diary/mylist/get');
         }
         else {
           alert('Fail');
