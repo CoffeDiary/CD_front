@@ -30,16 +30,19 @@ export default {
         password: this.password,
         userName: this.username,
       };
-      const response = await loginUser(userData);
-      if (response.status == 200) {
-        alert('Welcome to Coffee Diary!');
-        this.$cookies.set("access_token", response.data);
-        this.emitter.emit('logged');
-        this.$router.push('/home');
+      try {
+        const response = await loginUser(userData);
+        if (response.status == 200) {
+          alert('Welcome to Coffee Diary!');
+          this.$cookies.set("access_token", response.data);
+          this.emitter.emit('logged');
+          this.$router.push('/home');
+        }
       }
-      else {
-        alert('Fail');
-        alert(response.data);
+      catch (error) {
+        alert(error.response.message);
+        console.log(error.response.data);
+        this.logMessage = error.response.data;
       }
     },
   },

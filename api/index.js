@@ -29,6 +29,9 @@ function registerUser(userData) {
 function loginUser(userData) {
   return instance.post('login', userData);
 }
+function getUser() {
+  return instance.get('api/user');
+}
 function postDiary(userData) {
   return instance.post('api/diary', userData);
 }
@@ -45,4 +48,4 @@ function getDiaryList(userData) {
   return instance.get('api/diary/list', userData);
 }
 
-export { registerUser, loginUser, postDiary, putDiary, deleteDiary, getDiary, getDiaryList };
+export { registerUser, loginUser, getUser, postDiary, putDiary, deleteDiary, getDiary, getDiaryList };

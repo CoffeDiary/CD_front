@@ -40,6 +40,7 @@ export default {
       console.log(response);
     }
     catch (error) {
+      alert(error.response.message);
       console.log(error.response.data);
       this.logMessage = error.response.data;
     }
