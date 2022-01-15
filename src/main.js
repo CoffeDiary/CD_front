@@ -22,7 +22,7 @@ app.use(VueCookies, {
 });
 
 app.use(VCalendar, {
-  componentPrefix: 'vc',
+  // componentPrefix: 'vc',
 });
 
 app.use(router);

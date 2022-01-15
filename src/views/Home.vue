@@ -14,18 +14,18 @@
       :attributes="attributes"
       disable-page-swipe
       is-expanded
-      is-dark
     >
       <template v-slot:day-content="{ day, attributes }">
-        <div class="flex flex-col h-full z-10 overflow-hidden">
+        <div class="flex flex-column h-full z-10 overflow-hidden">
           <span class="day-label text-sm text-gray-900">{{ day.day }}</span>
           <div class="flex-grow overflow-y-auto overflow-x-auto">
             <p
               v-for="attr in attributes"
               :key="attr.key"
               class="text-xs leading-tight rounded-sm p-1 mt-0 mb-1"
+              :class="attr.customData.class"
             >
-              <q v-on:click="getDiary(attr.customData.diaryId);">{{ attr.customData.title }}</q>
+              <a href="#" v-on:click="getDiary(attr.customData.diaryId);">{{ attr.customData.title }}</a>
             </p>
           </div>
         </div>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { getDiaryList } from '../../api';
+import { getDiaryMyList } from '../../api';
 const _ = require("lodash");
 export default {
   name: "Home",
@@ -48,6 +48,7 @@ export default {
         customData: {
           title: String,
           diaryId: Number,
+          class: '',
         },
         dates: Date,
       },
@@ -67,7 +68,7 @@ export default {
   async mounted() {
     const userData = '';
     try {
-      const response = await getDiaryList(userData);
+      const response = await getDiaryMyList(userData);
       // this.diarylist = response.data;
       for (var i = 0; i < response.data.length; i++) {
         this.diarylist.key = i;
@@ -90,66 +91,52 @@ export default {
 };
 </script>
 
-<style scoped>
-h1 {
-  color: #634300
-}
-.wrap {
-  display: flex;
-}
-</style>
-
-<style lang="postcss" scoped>
-::-webkit-scrollbar {
+<style>
+.scrollbar {
   width: 0px;
 }
-::-webkit-scrollbar-track {
+.scrollbar-track {
   display: none;
 }
-/deep/ .custom-calendar.vc-container {
-  --day-border: 1px solid #b8c2cc;
-  --day-border-highlight: 1px solid #b8c2cc;
-  --day-width: 90px;
-  --day-height: 90px;
-  --weekday-bg: #f8fafc;
-  --weekday-border: 1px solid #eaeaea;
+.custom-calendar.vc-container {
   border-radius: 0;
   width: 100%;
-  & .vc-header {
-    background-color: #f1f5f8;
-    padding: 10px 0;
-  }
-  & .vc-weeks {
-    padding: 0;
-  }
-  & .vc-weekday {
-    background-color: var(--weekday-bg);
-    border-bottom: var(--weekday-border);
-    border-top: var(--weekday-border);
-    padding: 5px 0;
-  }
-  & .vc-day {
-    padding: 0 5px 3px 5px;
-    text-align: left;
-    height: var(--day-height);
-    min-width: var(--day-width);
-    background-color: white;
-    &.weekday-1,
-    &.weekday-7 {
-      background-color: #eff8ff;
-    }
-    &:not(.on-bottom) {
-      border-bottom: var(--day-border);
-      &.weekday-1 {
-        border-bottom: var(--day-border-highlight);
-      }
-    }
-    &:not(.on-right) {
-      border-right: var(--day-border);
-    }
-  }
-  & .vc-day-dots {
-    margin-bottom: 5px;
-  }
+}
+.custom-calendar.vc-container .vc-header {
+  background-color: #f1f5f8;
+  padding: 10px 0;
+}
+.custom-calendar.vc-container .vc-weeks {
+  padding: 0;
+}
+.custom-calendar.vc-container .vc-weekday {
+  background-color: #f8fafc;
+  border-bottom: 1px solid #eaeaea;
+  border-top: 1px solid #eaeaea;
+  padding: 5px 0;
+}
+.custom-calendar.vc-container .vc-day {
+  padding: 0 5px 3px 5px;
+  text-align: left;
+  min-height: 90px;
+  min-width: 90px;
+  overflow: auto;
+  background-color: white;
+}
+.custom-calendar.vc-container .vc-day.weekday-1,
+.custom-calendar.vc-container .vc-day.weekday-7 {
+  background-color: #eff8ff;
+}
+.custom-calendar.vc-container .vc-day:not(.on-bottom) {
+  border-bottom: 1px solid #b8c2cc;
+}
+.custom-calendar.vc-container .vc-day:not(.on-bottom).weekday-1 {
+  border-bottom: 1px solid #b8c2cc;
+}
+.custom-calendar.vc-container .vc-day:not(.on-right) {
+  border-right: 1px solid #b8c2cc;
+}
+.custom-calendar.vc-container .vc-day-dots {
+  margin-bottom: 5px;
 }
 </style>

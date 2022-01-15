@@ -20,7 +20,7 @@ instance.interceptors.request.use(
   },
   (error) => {
     return Promise.rejext(error);
-  }, null, { runwhen: getDiaryList }
+  },
 );
 
 function registerUser(userData) {
@@ -44,8 +44,8 @@ function deleteDiary(id) {
 function getDiary(id) {
   return instance.get('api/diary/' + id);
 }
-function getDiaryList(userData) {
-  return instance.get('api/diary/list', userData);
+function getDiaryMyList(userData) {
+  return instance.get('api/diary/mylist', userData);
 }
 
-export { registerUser, loginUser, getUser, postDiary, putDiary, deleteDiary, getDiary, getDiaryList };
+export { registerUser, loginUser, getUser, postDiary, putDiary, deleteDiary, getDiary, getDiaryMyList };

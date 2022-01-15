@@ -1,7 +1,7 @@
 <template>
   <nav class="nav" v-if="isLogged === true">
     <router-link to="/diary/post" class="nav-link">today's Diary</router-link>
-    <router-link to="/diary/list/get" class="nav-link">My Diary</router-link>
+    <router-link to="/diary/mylist/get" class="nav-link">My Diary</router-link>
     <router-link to="/user/get" class="nav-link">My Page</router-link>
     <router-link to="/logout" class="nav-link">Logout</router-link>
   </nav>

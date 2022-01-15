@@ -60,7 +60,7 @@ const routes = [
     beforeEnter: requireAccessToken,
   },
   {
-    path: '/diary/get',
+    path: '/diary/get/:diaryId',
     name: 'DiaryGet',
     component: () => import('@/views/diary/Get'),
     beforeEnter: requireAccessToken,
@@ -78,9 +78,9 @@ const routes = [
     beforeEnter: requireAccessToken,
   },
   {
-    path: '/diary/list/get',
-    name: 'DiaryListGet',
-    component: () => import('@/views/diary/list/Get'),
+    path: '/diary/mylist/get',
+    name: 'DiaryMListGet',
+    component: () => import('@/views/diary/mylist/Get'),
     beforeEnter: requireAccessToken,
   },
   {

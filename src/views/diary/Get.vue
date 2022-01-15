@@ -1,26 +1,46 @@
 <template>
   <div>
-    <h2>{{ title }} - {{ diaryId }}</h2>
-  </div>
-  <div>
-    <table class="table">
-      <thead>
+    <div class="wrap">
+      <h2>{{ diarylist.title }}</h2>
+      <table>
+        <colgroup>
+          <col width="15%" />
+          <col width="*" />
+        </colgroup>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Title</th>
-          <th scope="col">Content</th>
-          <th scope="col">Secret</th>
+          <th>id</th>
+          <td colspan="2">#{{ diarylist.diaryId }}</td>
         </tr>
-      </thead>
-      <tbody>
-        <tr v-for="diary in diarylist" v-bind:key='diary.id'>
-          <th scope="row">{{ diary.pk }}</th>
-          <td>{{ diary.title }}</td>
-          <td>{{ diary.content }}</td>
-          <td>{{ diary.secret }}</td>
+        <tr>
+          <th>content</th>
+          <td colspan="2" class="text_content">{{ diarylist.content }}</td>
         </tr>
-      </tbody>
-    </table>
+        <tr>
+          <th >secret</th>
+          <td colspan="2">{{ diarylist.secret }}</td>
+        </tr>
+        <tr>
+          <th>recipe</th>
+          <td>
+            #{{diarylist.recipe.recipeId }}<br>
+            coffeeBean<br>
+            coffeeAmount<br>
+            waterAmount<br>
+            grindingPoint<br>
+            waterDegree<br>
+          </td>
+          <td>
+            <br>
+            {{ diarylist.recipe.coffeeBean }}<br>
+            {{ diarylist.recipe.coffeeAmount }} (mL)<br>
+            {{ diarylist.recipe.waterAmount }} (mL)<br>
+            {{ diarylist.recipe.grindingPoint }} (mm)<br>
+            {{ diarylist.recipe.grindingPoint }} (°C)<br>
+          </td>
+          
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -31,13 +51,29 @@ export default {
     return {
       title: 'my diary',
       diaryId: this.$route.params.diaryId,
-      // diarylist: {},
+      diarylist: {
+        diaryId: '',
+        title: '',
+        content: '',
+        recipe: {
+          createDate: '',
+          modifiedDate: '',
+          recipeId: '',
+          coffeeAmount: '',
+          grindingPoint: '',
+          waterDegree: '',
+          waterAmount: '',
+          coffeeBean: '',
+        },
+        secret: '',
+      },
     };
   },
   async mounted() {
     try {
       const response = await getDiary(this.diaryId);
       console.log(response);
+      this.diarylist = response.data;
     }
     catch (error) {
       alert(error.response.message);
@@ -49,10 +85,26 @@ export default {
 </script>
 
 <style scoped>
-h2 {
-  color: #000000
+table {
+  border-top: 1px solid #888;
+  /* width: 75%; */
+}
+th {
+  border-bottom: 1px solid #eee;
+  padding: 5px 0;
+  }
+td {
+  border-bottom: 1px solid #eee;
+  padding: 10px 10px;
+  box-sizing: border-box;
+  text-align: left;
+}
+.text_content {
+  height: 200px;
+  vertical-align: top;;
 }
 .wrap {
-  display: flex;
+  text-align: start;
+  margin: 20px 10px 10px 20px;
 }
 </style>

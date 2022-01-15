@@ -25,8 +25,6 @@
 import { postDiary } from "../../../api";
 export default {
   name: "diaryPostForm",
-  components: {
-  },
   data() {
     return {
       title: '',
@@ -45,7 +43,7 @@ export default {
         const response = await postDiary(diaryData);
         if (response.status == 200) {
           alert('success!');
-          this.$router.push('/diary/list/get');
+          this.$router.push('/diary/mylist/get');
         }
         else {
           alert('Fail');
