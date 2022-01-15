@@ -5,9 +5,9 @@
     <!-- <DatePicker v-model="date" /> -->
   </div>
   <div class="text-center section">
-    <h2 class="h2">Custom Calendars</h2>
+    <h2 class="h2">Coffee Calendars</h2>
     <p class="text-lg font-medium text-gray-600 mb-6">
-      Roll your own calendars using scoped slots
+      Your Coffee date.
     </p>
     <v-calendar
       class="custom-calendar max-w-full"
@@ -25,7 +25,7 @@
               :key="attr.key"
               class="text-xs leading-tight rounded-sm p-1 mt-0 mb-1"
             >
-              {{ attr.customData.title }}
+              <q v-on:click="getDiary(attr.customData.diaryId);">{{ attr.customData.title }}</q>
             </p>
           </div>
         </div>
@@ -41,17 +41,28 @@ export default {
   name: "Home",
   data() {
     return {
+      title: "Coffee Diary",
       diarylist: {
         key: Number,
         title: String,
         customData: {
           title: String,
+          diaryId: Number,
         },
         dates: Date,
       },
-      title: "Coffee Diary",
       attributes: [],
     }
+  },
+  methods: {
+    getDiary: function(diaryId) {
+      this.$router.push({
+        name: 'DiaryGet',
+        params: {
+          diaryId: diaryId
+        }
+      });
+    },
   },
   async mounted() {
     const userData = '';
@@ -60,7 +71,10 @@ export default {
       // this.diarylist = response.data;
       for (var i = 0; i < response.data.length; i++) {
         this.diarylist.key = i;
-        this.diarylist.customData = {title: response.data[i].title};
+        this.diarylist.customData = {
+          title: response.data[i].title,
+          diaryId: response.data[i].diaryId,
+          };
         console.log(response.data[i].title.slice(0));
         var d = response.data[i].modifiedDate;
         this.diarylist.dates = new Date(d[0], d[1]-1, d[2], d[3], d[4], d[5]);

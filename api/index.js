@@ -38,8 +38,11 @@ function putDiary(userData, id) {
 function deleteDiary(id) {
   return instance.delete('api/diary/' + id);
 }
+function getDiary(id) {
+  return instance.get('api/diary/' + id);
+}
 function getDiaryList(userData) {
   return instance.get('api/diary/list', userData);
 }
 
-export { registerUser, loginUser, postDiary, putDiary, deleteDiary, getDiaryList };
+export { registerUser, loginUser, postDiary, putDiary, deleteDiary, getDiary, getDiaryList };

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>My Diary</h2>
+    <h2>{{ title }}</h2>
   </div>
   <div>
     <table class="table">
@@ -15,7 +15,7 @@
       <tbody>
         <tr v-for="diary in diarylist" v-bind:key='diary.id'>
           <th scope="row">{{ diary.diaryId }}</th>
-          <td>{{ diary.title }}</td>
+          <td v-on:click="getDiary(diary.diaryId);">{{ diary.title }}</td>
           <td>{{ diary.content }}</td>
           <td>{{ diary.secret }}</td>
           <button type="button" class="btn btn-outline-primary" v-on:click="modifyDiary(diary);">Modify</button>
@@ -34,10 +34,19 @@ export default {
   },
   data() {
     return {
+      title: 'My Diary',
       diarylist: Array,
     }
   },
   methods: {
+    getDiary: function(diaryId) {
+      this.$router.push({
+        name: 'DiaryGet',
+        params: {
+          diaryId: diaryId
+        }
+      });
+    },
     modifyDiary: function(diary) {
       this.$router.push({
         name: 'DiaryPut',

@@ -1,5 +1,5 @@
 <template>
-<div>Delete</div>
+<div>{{ title }}</div>
 </template>
 
 <script>
@@ -7,6 +7,7 @@ import { deleteDiary } from '../../../api';
 export default {
 data () {
   return {
+    title: 'Delete',
     diaryId: this.$route.params.diaryId,
   };
 },
